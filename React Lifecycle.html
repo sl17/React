@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="renderer" content="webkit">
+		<meta name="force-rendering" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>React Lifecycle</title>
+		<style type="text/css">
+			body{width: 100%;}
+			*{margin: 0;padding: 0;}
+			ul,li{list-style: none;}
+			li{border-bottom: 2px dashed;;}
+			h1{font-size: 20px;;}
+			h2{font-size: 16px;font-weight: normal;}
+			i{color: #ccc;font-size: 14px;;}
+			p{font-size: 16px;;width: 90%;height: 30px;border-radius: 5px;line-height: 30px;border: 1px solid #eee;text-align: center;position: relative;z-index: 8;margin: 5px auto 0;}
+			/*p:before{content: "↓";width: 5px;position: absolute;margin: auto;bottom: -18px;left: 20%;font-size: 20px;}*/
+			em{display: block;margin-bottom: 30px;font-size: 13px;font-style: normal;color: #b12f2f;position: relative;margin-top: 10px;text-align: center;}
+			em:before{content: "↑";width: 5px;position: absolute;margin: auto;top: -19px;left: 45%;font-size: 18px;transform: rotateZ(0deg);}
+			span{display: inline-block;width: 50%;height: 30px;border-radius: 5px;line-height: 30px;text-align: center;font-size: 12px;}
+			strong{display: inline-block;width: 41.5%;height: 30px;border-radius: 5px;line-height: 30px;margin-left: 5%;text-align: center;margin-bottom: 5px;}
+			.div em{display: inline-block;width: 50%;margin-bottom: 30px;font-size: 13px;font-style: normal;color: #b12f2f;position: relative;margin-top: 10px;text-align: center;}
+			.div em:before{content: "↑";width: 5px;position: absolute;margin: auto;top: -18px;left: 45%;font-size: 18px;transform: rotateZ(0deg);}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>
+				<h1>Initalization</h1>
+				<i>(初始化过程)</i>
+				<div>
+					<p>setup props and state</p>
+				</div>
+			</li>
+			<li>
+				<h1>Mounting</h1>
+				<i>(要被渲染/挂载到页面)</i>
+				<div>
+					<p>componentWillMount</p>
+					<em>在组件即将被挂载到页面被执行一次</em>
+					<p>render</p>
+					<em>组件被渲染</em>
+					<p>componentDidMount</p>
+					<em>在组件被挂载到页面之后被执行一次</em>
+				</div>
+			</li>
+			<li>
+				<h1>Updation</h1>
+				<i>(组件更新)</i>
+				<div class="div">
+					<h2><strong>props</strong><strong>state</strong></h2>
+					<span>componentWillReceiveProps</span><span>shouldComponentUpdate</span>
+					<em style="font-size: 10px;">当组件从父组件接收参数，组件第一次存在于父组件中(不执行)，组件已经存在于父组件中(会执行)</em><em>组件被更新之前被执行<u>返回值true|false(是否执行更新)</u></em>
+					<span>shouldComponentUpdate</span><span>componentWillUpdate</span>
+					<em>组件被更新之前被执行<u>返回值true|false(是否执行更新)</u></em><em>组件被更新之前，自动执行，在shouldComponentUpdate返回true之后执行</em>
+					<span>componentWillUpdate</span><span>render</span>
+					<em>组件被更新之前，自动执行，在shouldComponentUpdate返回true之后执行</em><em>重新渲染</em>
+					<span>render</span><span>componentDidUpdate</span>
+					<em>重新渲染</em><em>组件更新完成之后被执行</em>
+					<span>componentDidUpdate</span>
+					<em>组件更新完成之后被执行</em>
+				</div>
+			</li>
+			<li>
+				<h1>Unmounting</h1>
+				<i>(组件卸载)</i>
+				<div>
+					<p>componentWillUnmount</p>
+					<em>当这个组件被从页面中卸载/移除，执行</em>
+				</div>
+			</li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		var p = document.querySelectorAll("p")
+		var li = document.querySelectorAll("li")
+		var span = document.querySelectorAll("span")
+		console.log(p.length)
+		function rand(){
+			var r = Math.floor(Math.random()*256);
+			var g = Math.floor(Math.random()*256);
+			var b = Math.floor(Math.random()*256);
+			return "rgb("+r+","+g+","+b+")"
+		}
+		
+		for (var i = 0;i < p.length; i++) {
+			p[i].style.background = rand()
+		}
+		for (var j = 0;j < li.length; j++) {
+			li[j].style.borderColor = rand()
+		}
+		for (var n = 0;n < span.length; n++) {
+			span[n].style.background = rand()
+		}
+	</script>
+</html>
